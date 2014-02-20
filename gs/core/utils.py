@@ -10,7 +10,6 @@ def to_ascii(obj):
 
 def to_unicode_or_bust(obj, encoding='utf-8'):
     'http://farmdev.com/talks/unicode/'
-    #FIXME: Move to gs.utils
     if isinstance(obj, basestring):
         if not isinstance(obj, unicode):
             obj = unicode(obj, encoding)

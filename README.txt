@@ -20,6 +20,38 @@ This product contains some useful functions. They were originally written
 as part of the GroupServer_ project, but they are totally independent of
 GroupServer.
 
+``curr_time``
+=============
+
+Get the current time, in UTC, as a ``datetime.datetime``.
+
+Synopsis
+--------
+
+::
+
+   gs.core.curr_time()
+
+Description
+-----------
+
+This function returns the current time, with a timezone, as a standard
+Python ``datetime.datetime`` instance [#datetime]_. It saves quite a few
+imports!
+
+.. [#datetime] See <http://docs.python.org/library/datetime.html>
+
+Arguments
+---------
+
+None.
+
+Returns
+-------
+
+The current time, as a ``datetime.datetime`` instance, with the timezone
+set to UTC.
+
 ``to_ascii``
 =============
 

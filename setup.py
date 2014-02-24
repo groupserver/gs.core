@@ -44,7 +44,8 @@ setup(name='gs.core',
     include_package_data=True,
     zip_safe=False,
     install_requires=[
-        'setuptools',  # --=mpj17=-- Actually the complete set of egg deps
+        'setuptools',
+        'pytz',
     ],
     entry_points="""
     # -*- Entry points: -*-

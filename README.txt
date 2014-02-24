@@ -7,7 +7,7 @@ Useful utilities
 
 :Author: `Michael JasonSmith`_
 :Contact: Michael JasonSmith <mpj17@onlinegroups.net>
-:Date: 2014-02-20
+:Date: 2014-02-24
 :Organization: `GroupServer.org`_
 :Copyright: This document is licensed under a
   `Creative Commons Attribution-Share Alike 3.0 New Zealand License`_
@@ -142,6 +142,68 @@ Acknowledgements
 Taken from an excellent presentation on `Unicode in Python by Kumar
 McMillan <http://farmdev.com/talks/unicode/>`_.
 
+
+``to_id``
+=========
+
+Create a random identifier, using a string as a seed.
+
+Synopsis
+--------
+
+::
+
+  gs.core.to_id(s)
+
+Description
+-----------
+
+Many things require unique identifiers, such as users, posts, topics,
+password-reset links, and email-verification links. The ``to_id`` function
+takes a string and converts it to a fixed-length base-62 encoded string
+that can be used as an ID.
+
+Arguments
+---------
+
+``s``:
+  The string to be used as a seed.
+
+Returns
+-------
+
+A base-62 encoded string, 22 characters long.
+
+Example
+-------
+
+::
+
+    email = emailUser.get_delivery_addresses()[0]
+    verificationId = to_id(email)
+
+``convert_int2b62``
+===================
+
+Convert an integer to a base-62 encoded string.
+
+Synopsis
+--------
+
+::
+
+  gs.core.convert_int2b62(num)
+
+Arguments
+---------
+
+``num``:
+  The number to convert
+
+Returns
+-------
+
+A base-62 encoded string.
 
 Resources
 =========

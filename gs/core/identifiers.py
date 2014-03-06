@@ -41,7 +41,8 @@ def to_id(s):
     if not s:
         m = 'Nothing to convert to an ID'
         raise ValueError(m)
-    md5n = md5_new(asctime() + to_unicode_or_bust(s))
+    st = to_unicode_or_bust(asctime()) + to_unicode_or_bust(s)
+    md5n = md5_new(st.encode('utf-8', 'ignore'))
     vNum = long(md5n.hexdigest(), 16)
     retval = str(convert_int2b62(vNum))
     return retval

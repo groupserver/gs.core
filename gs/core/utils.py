@@ -34,3 +34,25 @@ def to_unicode_or_bust(obj, encoding='utf-8'):
 def curr_time():
     retval = datetime.now(UTC)
     return retval
+
+
+def comma_comma_and(l, conj='and'):
+    '''Join a list of strings joined with commas and a conjunction
+       (either "and" or "or", defaulting to "and").
+
+      Turn a list (or tuple) of strings into a single string, with all
+      the items joined by ", " except for the last two, which are joined
+      by either " and " or " or ". If there is only one item in the list,
+      it is returned.
+    '''
+    if type(l) not in [list, tuple]:
+        m = '%s, not a list or tuple' % type(l)
+        raise TypeError(m)
+    if len(l) == 0:
+        retval = ''
+    elif len(l) == 1:
+        retval = l[0]
+    else:
+        base = ', {0} '.format(conj)
+        retval = base.join((', '.join(l[:-1]), l[-1]))
+    return retval

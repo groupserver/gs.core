@@ -143,6 +143,43 @@ Taken from an excellent presentation on `Unicode in Python by Kumar
 McMillan <http://farmdev.com/talks/unicode/>`_.
 
 
+``comma_comma_and``
+===================
+
+Turn a list of strings into a single strings, with commas.
+
+Synopsis
+--------
+
+::
+
+  gs.core.comma_comma_and(l, conj='and')
+
+Description
+-----------
+
+This utility turns a list (such as ``['this', 'that', 'the other thing']``)
+into a single string (``this, that, and the other thing``). It is useful
+when reporting back from forms.
+
+Arguments
+---------
+
+``l``:
+  The list of strings.
+
+``conj``:
+  The conjunctive to use (defaults to ``and``).
+
+Returns
+-------
+
+* An empty string if the list ``l`` is empty,
+* The one item from ``l`` if ``l`` is a single item long, or
+* A single string that contains all the items from ``l`` separated by
+  commas (``,``), except for the last two items that are separated by a
+  comma and the conjunctive.
+
 ``to_id``
 =========
 

@@ -13,7 +13,12 @@
 #
 ##############################################################################
 from __future__ import unicode_literals
-from md5 import new as md5_new
+import sys
+if (sys.version_info < (3, )):
+    longint = long
+else:
+    longint = int
+from hashlib import md5
 from string import printable
 from time import asctime
 from .utils import to_unicode_or_bust
@@ -42,7 +47,8 @@ def to_id(s):
         m = 'Nothing to convert to an ID'
         raise ValueError(m)
     st = to_unicode_or_bust(asctime()) + to_unicode_or_bust(s)
-    md5n = md5_new(st.encode('utf-8', 'ignore'))
-    vNum = long(md5n.hexdigest(), 16)
+    md5n = md5()
+    md5n.update(st.encode('utf-8', 'ignore'))
+    vNum = longint(md5n.hexdigest(), 16)
     retval = str(convert_int2b62(vNum))
     return retval

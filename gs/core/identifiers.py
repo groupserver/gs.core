@@ -25,8 +25,9 @@ from .utils import to_unicode_or_bust
 
 
 def convert_int2b(num, alphabet, converted=[]):
+    '''Convert n integer to a string using the alphabet as the base'''
     mod = num % len(alphabet)
-    rem = num / len(alphabet)
+    rem = num // len(alphabet)
     converted.append(alphabet[mod])
     if rem:
         retval = convert_int2b(rem, alphabet, converted)
@@ -37,6 +38,7 @@ def convert_int2b(num, alphabet, converted=[]):
 
 
 def convert_int2b62(num):
+    '''Convert an integer into a base62 encoded string'''
     alphabet = printable[:62]
     retval = convert_int2b(num, alphabet, [])
     return retval

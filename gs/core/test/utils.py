@@ -14,7 +14,7 @@
 ##############################################################################
 from __future__ import absolute_import, unicode_literals
 from unittest import TestCase, main as unittest_main
-from gs.core import to_ascii, to_unicode_or_bust
+from gs.core import to_ascii, to_unicode_or_bust, comma_comma_and
 
 
 class TestToUnicode(TestCase):
@@ -53,6 +53,23 @@ class TestToAscii(TestCase):
         testText = b'Word association football \342\232\275'
         r = to_ascii(testText)
         self.assertEqual(b'Word association football ', r)
+
+
+class TestCommaCommaAnd(TestCase):
+    def test_err(self):
+        testText = 'Dirk'
+        self.assertRaises(TypeError, comma_comma_and, testText)
+
+    def test_double(self):
+        testText = ['Dirk', 'Dinsdale']
+        r = comma_comma_and(testText)
+        self.assertEqual('Dirk, and Dinsdale', r)
+
+    def test_three(self):
+        testText = ['Dirk', 'Dinsdale', 'the local constable for the area']
+        r = comma_comma_and(testText)
+        expected = 'Dirk, Dinsdale, and the local constable for the area'
+        self.assertEqual(expected, r)
 
 
 if __name__ == '__main__':

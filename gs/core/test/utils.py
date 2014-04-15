@@ -28,7 +28,7 @@ class TestToUnicode(TestCase):
     def test_ascii_to_unicode(self):
         testText = b'Word association football'
         r = to_unicode_or_bust(testText)
-        self.assertEqual(testText, r)
+        self.assertEqual('Word association football', r)
 
     def test_utf8_to_unicode(self):
         testText = b'Word association football \342\232\275'
@@ -42,17 +42,17 @@ class TestToAscii(TestCase):
     def test_ascii_to_ascii(self):
         testText = b'Word association football'
         r = to_ascii(testText)
-        self.assertEqual(r, b'Word association football')
+        self.assertEqual(type(testText), type(r))
 
     def test_unicode_to_ascii(self):
         testText = 'Word association football \u26BD'
         r = to_ascii(testText)
-        self.assertEqual(r, b'Word association football ')
+        self.assertEqual(b'Word association football ', r)
 
     def test_utf8_to_ascii(self):
         testText = b'Word association football \342\232\275'
         r = to_ascii(testText)
-        self.assertEqual('Word association football ', r)
+        self.assertEqual(b'Word association football ', r)
 
 
 if __name__ == '__main__':

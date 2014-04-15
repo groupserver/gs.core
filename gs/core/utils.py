@@ -14,6 +14,7 @@
 ##############################################################################
 from __future__ import unicode_literals
 from datetime import datetime
+import sys
 from pytz import utc as UTC
 
 
@@ -23,12 +24,23 @@ def to_ascii(obj):
     return retval
 
 
-def to_unicode_or_bust(obj, encoding='utf-8'):
+def p2_to_unicode_or_bust(obj, encoding='utf-8'):
     'http://farmdev.com/talks/unicode/'
     if isinstance(obj, basestring):
         if not isinstance(obj, unicode):
             obj = unicode(obj, encoding)
     return obj
+
+
+def p3_to_unicode_or_bust(obj, encoding='utf-8'):
+    if hasattr(obj, 'decode'):
+        obj = obj.decode(encoding)
+    return obj
+
+if (sys.version_info < (3, )):
+    to_unicode_or_bust = p2_to_unicode_or_bust
+else:
+    to_unicode_or_bust = p3_to_unicode_or_bust
 
 
 def curr_time():

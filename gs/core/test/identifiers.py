@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
-# -*- coding: utf-8 -*-
-##############################################################################
+#############################################################################
 #
 # Copyright © 2014 OnlineGroups.net and Contributors.
 # All Rights Reserved.
@@ -14,19 +13,21 @@
 #
 ##############################################################################
 from __future__ import absolute_import, unicode_literals
-from unittest import TestSuite, main as unittest_main
-from gs.core.test.utils import TestToUnicode, TestToAscii
-from gs.core.test.identifiers import TestInt2B62
-
-testCases = (TestToUnicode, TestToAscii, TestInt2B62, )
+from unittest import TestCase, main as unittest_main
+from gs.core import convert_int2b62
 
 
-def load_tests(loader, tests, pattern):
-    suite = TestSuite()
-    for testClass in testCases:
-        tests = loader.loadTestsFromTestCase(testClass)
-        suite.addTests(tests)
-    return suite
+class TestInt2B62(TestCase):
+    def test_convert(self):
+        i = 12
+        r = convert_int2b62(i)
+        self.assertEqual(r, 'c')
+
+    def test_convert_2(self):
+        i = 128
+        r = convert_int2b62(i)
+        self.assertEqual(r, '24')
+
 
 if __name__ == '__main__':
     unittest_main()

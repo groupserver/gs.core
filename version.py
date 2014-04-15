@@ -3,8 +3,11 @@ version = '2.0'
 release = False
 
 #-----------------------------------------------------------------------------#
-
-import commands
+import sys
+if (sys.version_info < (3, )):
+    from commands import getstatusoutput
+else:
+    from subprocess import getstatusoutput  # lint:ok
 import datetime
 import os
 import glob
@@ -15,9 +18,11 @@ class CommandError(Exception):
 
 
 def execute_command(commandstring):
-    status, output = commands.getstatusoutput(commandstring)
+    status, output = getstatusoutput(commandstring)
     if status != 0:
-        raise CommandError
+        m = 'Command "{0}" exited with status {1}'
+        msg = m.format(commandstring, status)
+        raise CommandError(msg)
     return output
 
 
@@ -30,7 +35,7 @@ def parse_version_from_package():
 
     version_string = ''
     if os.path.exists(pkginfo):
-        for line in file(pkginfo):
+        for line in open(pkginfo):
             if line.find('Version: ') == 0:
                 version_string = line.strip().split('Version: ')[1].strip()
         if not version_string:
@@ -62,4 +67,5 @@ def get_version():
     return version_string
 
 if __name__ == '__main__':
-    print get_version()
+    import sys
+    sys.stdout.write('{0}\n'.format(get_version()))

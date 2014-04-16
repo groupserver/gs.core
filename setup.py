@@ -52,6 +52,7 @@ setup(name='gs.core',
         'setuptools',
         'pytz',
     ],
+    test_suite="gs.core.test.test_all",
     entry_points="""
     # -*- Entry points: -*-
     """,)

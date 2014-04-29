@@ -1,6 +1,12 @@
 Changelog
 =========
 
+2.1.1 (2014-04-29)
+------------------
+
+* Switched to Sphinx documentation
+* Tweaked the ``to_unicode_or_bust`` slightly
+
 2.1.0 (2014-04-25)
 ------------------
 

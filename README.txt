@@ -20,7 +20,6 @@ This product contains some useful functions. They were originally written
 as part of the GroupServer_ project, but they are totally independent of
 GroupServer.
 
-
 ``curr_time``:
   Get the current time, in UTC, as a ``datetime.datetime``.
 

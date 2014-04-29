@@ -38,13 +38,37 @@ def convert_int2b(num, alphabet, converted=[]):
 
 
 def convert_int2b62(num):
-    '''Convert an integer into a base62 encoded string'''
+    '''Convert an integer to a base-62 encoded string.
+
+:param int num: The number to convert.
+:returns: A base-62 encoded string.
+:rtype: str
+'''
     alphabet = printable[:62]
     retval = convert_int2b(num, alphabet, [])
     return retval
 
 
 def to_id(s):
+    '''  Create a random identifier, using a string as a seed.
+
+:param str s: The string to be used as a seed.
+:return: A base-62 encoded string, 22 characters long.
+:rtype: str
+
+Many things require unique identifiers, such as users, posts, topics,
+password-reset links, and email-verification links. The ``to_id`` function
+takes a string and converts it to a fixed-length base-62 encoded string
+that can be used as an ID.
+
+
+Example:
+
+    Create a verification identifier for an email address::
+
+        email = emailUser.get_delivery_addresses()[0]
+        verificationId = to_id(email)
+'''
     if not s:
         m = 'Nothing to convert to an ID'
         raise ValueError(m)

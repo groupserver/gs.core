@@ -18,8 +18,28 @@ import sys
 from pytz import utc as UTC
 
 
-def to_ascii(obj):
-    u = to_unicode_or_bust(obj)
+def to_ascii(stringOrUnicode):
+    '''Convert a string to ASCII, with a reasonable chance of success.
+
+:param stringOrUnicode: The instance to convert.
+:return: The object converted to a string
+
+The ``to_ascii`` function, ultimately, calls
+``unicode.encode('ascii', 'ignore')``, but it has a couple of advantages.
+
+#. It takes up less space when writing code.
+#. If passed a string then the string will be decoded as UTF-8, before
+   being re-encoded as ASCII.
+
+The second point may seem to be redundant, but it avoids the dreaded
+**Unicode Decode Error** from occurring.
+
+Example:
+    Ensure the filename with the group identifier is ascii::
+
+        filename = to_ascii('{0}-members.csv'.format(self.groupInfo.id))
+'''
+    u = to_unicode_or_bust(stringOrUnicode)
     retval = u.encode('ascii', 'ignore')
     return retval
 
@@ -37,26 +57,72 @@ def p3_to_unicode_or_bust(obj, encoding='utf-8'):
         obj = obj.decode(encoding)
     return obj
 
+# Figure out if we should be using the Python 2 or the Python 3 version of
+# to_unicode_or_bust
 if (sys.version_info < (3, )):
-    to_unicode_or_bust = p2_to_unicode_or_bust
+    p23 = p2_to_unicode_or_bust
 else:
-    to_unicode_or_bust = p3_to_unicode_or_bust
+    p23 = p3_to_unicode_or_bust
+
+
+def to_unicode_or_bust(obj, encoding='utf-8'):
+    '''Convert an object to a Unicode instance, with reasonable chance of
+success.
+
+:param stringOrUnicode: The instance to convert to a unicode.
+:param encoding: The encoding for the object. Defaults to ``utf-8``.
+:return: A Unicode instance.
+
+Sometimes text-input has… uncertain… origins, and it is hard to know
+encoding it is. The ``to_unicode_or_bust`` has a good stab at converting
+the input to a Unicode instance.
+
+Example:
+    Convert some input into a file-name::
+
+        filename = gs.core.to_unicode_or_bust(someInput)
+
+Acknowledgements:
+    Taken from an excellent presentation on `Unicode in Python by Kumar
+    McMillan <http://farmdev.com/talks/unicode/>`_.
+'''
+    return p23(obj, encoding)
 
 
 def curr_time():
+    '''Get the current time, in UTC, as a :class:``datetime.datetime``.
+
+:return: The current time, as a ``datetime.datetime`` instance, with the
+         timezone set to UTC.
+:rtype: :class:``datetime.datetime``
+
+This function returns the current time, with a timezone, as a standard
+Python :class:``datetime.datetime`` instance. It saves quite a few
+imports!
+'''
     retval = datetime.now(UTC)
     return retval
 
 
 def comma_comma_and(l, conj='and'):
-    '''Join a list of strings joined with commas and a conjunction
-       (either "and" or "or", defaulting to "and").
+    '''Turn a list of strings into a single strings, with commas.
 
-      Turn a list (or tuple) of strings into a single string, with all
-      the items joined by ", " except for the last two, which are joined
-      by either " and " or " or ". If there is only one item in the list,
-      it is returned.
-    '''
+:param sequence l: The strings to convert.
+:param str conj: The conjunctive to use.
+:return: Either
+
+  * An empty string if the list ``l`` is empty,
+  * The one item from ``l`` if ``l`` is a single item long, or
+  * A single string that contains all the items from ``l`` separated by
+    commas (``,``), except for the last two items that are separated by a
+    comma and the conjunctive.
+
+:rtype: ``string``
+
+This utility turns a list (such as ``['this', 'that', 'the other thing']``)
+into a single string (``this, that, and the other thing``). It is useful
+when reporting back from forms.
+'''
     if type(l) not in [list, tuple]:
         m = '%s, not a list or tuple' % type(l)
         raise TypeError(m)

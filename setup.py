@@ -57,6 +57,7 @@ setup(name='gs.core',
         'setuptools',
         'pytz',
     ],
+    extras_require={'docs': ['Sphinx'], },
     test_suite="gs.core.test.test_all",
     entry_points="""
     # -*- Entry points: -*-

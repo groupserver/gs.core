@@ -23,6 +23,7 @@ def to_ascii(stringOrUnicode):
 
 :param stringOrUnicode: The instance to convert.
 :return: The object converted to a string
+:rtype: ``str``
 
 The ``to_ascii`` function, ultimately, calls
 ``unicode.encode('ascii', 'ignore')``, but it has a couple of advantages.
@@ -65,20 +66,21 @@ else:
     p23 = p3_to_unicode_or_bust
 
 
-def to_unicode_or_bust(obj, encoding='utf-8'):
+def to_unicode_or_bust(stringOrUnicode, encoding='utf-8'):
     '''Convert an object to a Unicode instance, with reasonable chance of
 success.
 
 :param stringOrUnicode: The instance to convert to a unicode.
 :param encoding: The encoding for the object. Defaults to ``utf-8``.
-:return: A Unicode instance.
+:return: The object converted to a Unicode.
+:rtype: ``unicode`` (or ``str`` in Python 3)
 
 Sometimes text-input has… uncertain… origins, and it is hard to know
 encoding it is. The ``to_unicode_or_bust`` has a good stab at converting
 the input to a Unicode instance.
 
 Example:
-    Convert some input into a file-name::
+    Convert some input into Unicode::
 
         filename = gs.core.to_unicode_or_bust(someInput)
 
@@ -86,18 +88,18 @@ Acknowledgements:
     Taken from an excellent presentation on `Unicode in Python by Kumar
     McMillan <http://farmdev.com/talks/unicode/>`_.
 '''
-    return p23(obj, encoding)
+    return p23(stringOrUnicode, encoding)
 
 
 def curr_time():
-    '''Get the current time, in UTC, as a :class:``datetime.datetime``.
+    '''Get the current time, in UTC, as a :class:`datetime.datetime`.
 
-:return: The current time, as a ``datetime.datetime`` instance, with the
-         timezone set to UTC.
-:rtype: :class:``datetime.datetime``
+:return: The current time, as a class:`datetime.datetime` instance, with the
+         timezone set to ``UTC``.
+:rtype: :class:`datetime.datetime`
 
 This function returns the current time, with a timezone, as a standard
-Python :class:``datetime.datetime`` instance. It saves quite a few
+Python :class:`datetime.datetime` instance. It saves quite a few
 imports!
 '''
     retval = datetime.now(UTC)
@@ -105,7 +107,7 @@ imports!
 
 
 def comma_comma_and(l, conj='and'):
-    '''Turn a list of strings into a single strings, with commas.
+    '''Turn a list of strings into a single string, with commas.
 
 :param sequence l: The strings to convert.
 :param str conj: The conjunctive to use.
@@ -115,9 +117,9 @@ def comma_comma_and(l, conj='and'):
   * The one item from ``l`` if ``l`` is a single item long, or
   * A single string that contains all the items from ``l`` separated by
     commas (``,``), except for the last two items that are separated by a
-    comma and the conjunctive.
+    comma and the conjunctive (``conj``).
 
-:rtype: ``string``
+:rtype: ``str``
 
 This utility turns a list (such as ``['this', 'that', 'the other thing']``)
 into a single string (``this, that, and the other thing``). It is useful

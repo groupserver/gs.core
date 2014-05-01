@@ -3,4 +3,4 @@ recursive-include docs *
 include version.py
 include *.txt
 global-exclude *.pyc
-prune-dir gs/core/test/__pycache__/
+include tox.ini

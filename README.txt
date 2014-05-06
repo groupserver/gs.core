@@ -46,6 +46,7 @@ GroupServer.
 Resources
 =========
 
+- Documentation: http://gscore.readthedocs.org/
 - Code repository: https://source.iopen.net/groupserver/gs.core
 - Questions and comments to http://groupserver.org/groups/development
 - Report bugs at https://redmine.iopen.net/projects/groupserver

@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-##############################################################################
+############################################################################
 #
 # Copyright © 2014 OnlineGroups.net and Contributors.
 # All Rights Reserved.
@@ -11,7 +11,7 @@
 # WARRANTIES OF TITLE, MERCHANTABILITY, AGAINST INFRINGEMENT, AND FITNESS
 # FOR A PARTICULAR PURPOSE.
 #
-##############################################################################
+############################################################################
 from setuptools import setup, find_packages
 import codecs
 import os
@@ -19,12 +19,14 @@ from version import get_version
 
 with codecs.open('README.rst', encoding='utf-8') as f:
     long_description = f.read()
-with codecs.open(os.path.join("docs", "HISTORY.txt"), encoding='utf-8') as f:
+with codecs.open(os.path.join("docs", "HISTORY.rst"),
+                 encoding='utf-8') as f:
     long_description += '\n' + f.read()
 
 version = get_version()
 
-setup(name='gs.core',
+setup(
+    name='gs.core',
     version=version,
     description="Useful utility functions.",
     long_description=long_description,
@@ -43,8 +45,8 @@ setup(name='gs.core',
         "Programming Language :: Python :: Implementation :: CPython",
         "Programming Language :: Python :: Implementation :: PyPy",
         "Topic :: Software Development :: Libraries :: Python Modules",
-      ],
-    keywords='zope form formlib zope.formlib post',
+    ],
+    keywords='utility, identifier, unicode',
     author='Michael JasonSmith',
     author_email='mpj17@onlinegroups.net',
     url='https://source.iopen.net/groupserver/gs.core/',

@@ -7,7 +7,7 @@ Useful utilities
 
 :Author: `Michael JasonSmith`_
 :Contact: Michael JasonSmith <mpj17@onlinegroups.net>
-:Date: 2014-02-24
+:Date: 2015-04-15
 :Organization: `GroupServer.org`_
 :Copyright: This document is licensed under a
   `Creative Commons Attribution-Share Alike 4.0 International License`_
@@ -47,8 +47,9 @@ Resources
 =========
 
 - Documentation: http://gscore.readthedocs.org/
-- Code repository: https://source.iopen.net/groupserver/gs.core
-- Questions and comments to http://groupserver.org/groups/development
+- Code repository: https://github.com/groupserver/gs.core
+- Questions and comments to
+  http://groupserver.org/groups/development
 - Report bugs at https://redmine.iopen.net/projects/groupserver
 
 .. _GroupServer: http://groupserver.org/

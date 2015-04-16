@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
-##############################################################################
+############################################################################
 #
-# Copyright © 2014 OnlineGroups.net and Contributors.
+# Copyright © 2014, 2015 OnlineGroups.net and Contributors.
 # All Rights Reserved.
 #
 # This software is subject to the provisions of the Zope Public License,
@@ -11,7 +11,7 @@
 # WARRANTIES OF TITLE, MERCHANTABILITY, AGAINST INFRINGEMENT, AND FITNESS
 # FOR A PARTICULAR PURPOSE.
 #
-##############################################################################
+############################################################################
 from __future__ import unicode_literals
 import sys
 if (sys.version_info < (3, )):
@@ -24,8 +24,10 @@ from time import asctime
 from .utils import to_unicode_or_bust
 
 
-def convert_int2b(num, alphabet, converted=[]):
+def convert_int2b(num, alphabet, converted=None):
     '''Convert n integer to a string using the alphabet as the base'''
+    if converted is None:
+        converted = []
     mod = num % len(alphabet)
     rem = num // len(alphabet)
     converted.append(alphabet[mod])

@@ -27,16 +27,15 @@ MAILTO = 'mailto:{to}?subject={subject}&body={body}'
 def mailto(toAddress, subject, body):
     '''Create a mailto URI
 
-:param str toAddress: The address to send the email to.
-:param str subject: The subject of the new message.
-:parm str body: The body of the message
+:param str toAddress: The address to send the email to (the :mailheader:`To` header).
+:param str subject: The subject of the new message (the :mailheader:`Subject` header).
+:param str body: The body of the message
 :returns: A mailto URI (``mailto:``).
 :rtype: str
 
 It is possible to create a URI that will create an email message when clicked. Such URIs start with
-``mailto:``. The :mailheader:`To` and :mailheader:`Subject` can be set, along with the body.
-However, care must be taken to quote the parameters correctly. This function quotes the URI, and
-does the correct quoting.'''
+``mailto:`` (:rfc:`6068`). However, care must be taken to quote the parameters correctly. This
+function creates a mailto URI with the correct quoting.'''
     quotedSubject = quote(subject)
     quotedBody = quote(body)
     retval = MAILTO.format(to=toAddress, subject=quotedSubject, body=quotedBody)

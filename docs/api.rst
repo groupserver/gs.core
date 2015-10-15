@@ -23,3 +23,8 @@ Identifiers
 
 .. autofunction:: gs.core.to_id
 .. autofunction:: gs.core.convert_int2b62
+
+Creating a ``mailto`` URI
+-------------------------
+
+.. autofunction:: gs.core.mailto

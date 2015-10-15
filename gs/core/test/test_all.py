@@ -14,11 +14,12 @@
 ############################################################################
 from __future__ import absolute_import, unicode_literals
 from unittest import TestSuite, main as unittest_main
-from gs.core.test.utils import TestToUnicode, TestToAscii, TestCommaCommaAnd
 from gs.core.test.identifiers import TestInt2B62, TestInt2B
+from gs.core.test.mailto import TestMailto, TestQuote
+from gs.core.test.utils import TestToUnicode, TestToAscii, TestCommaCommaAnd
 
 testCases = (TestToUnicode, TestToAscii, TestCommaCommaAnd, TestInt2B62,
-             TestInt2B)
+             TestInt2B, TestMailto, TestQuote, )
 
 
 def load_tests(loader, tests, pattern):

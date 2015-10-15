@@ -6,3 +6,4 @@ dist
 *orig
 *nja
 .tox
+docs/_build

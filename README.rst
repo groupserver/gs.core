@@ -7,7 +7,7 @@ Useful utilities
 
 :Author: `Michael JasonSmith`_
 :Contact: Michael JasonSmith <mpj17@onlinegroups.net>
-:Date: 2015-04-15
+:Date: 2015-10-15
 :Organization: `GroupServer.org`_
 :Copyright: This document is licensed under a
   `Creative Commons Attribution-Share Alike 4.0 International License`_
@@ -42,6 +42,9 @@ GroupServer.
 
 ``convert_int2b62``:
   Convert an integer to a base-62 encoded string.
+
+``mailto``:
+  Generate a correctly-quoted ``mailto:`` URI.
 
 Resources
 =========

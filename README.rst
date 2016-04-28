@@ -49,7 +49,7 @@ GroupServer.
 Resources
 =========
 
-- Documentation: http://gscore.readthedocs.org/
+- Documentation: http://gscore.readthedocs.io/
 - Code repository: https://github.com/groupserver/gs.core
 - Questions and comments to
   http://groupserver.org/groups/development
